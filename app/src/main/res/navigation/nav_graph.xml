@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.benjamin.gardeningjournalapp.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/gardenLogFragment"
+        android:name="com.benjamin.gardeningjournalapp.GardenLogFragment"
+        android:label="Garden Log"
+        tools:layout="@layout/fragment_garden_log" />
+
+    <fragment
+        android:id="@+id/plantDetailsFragment"
+        android:name="com.benjamin.gardeningjournalapp.PlantDetailsFragment"
+        android:label="PlantDetailsFragment">
+
+        <argument
+            app:argType="integer" />
+    </fragment>
+
+</navigation>
