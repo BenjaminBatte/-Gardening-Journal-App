@@ -15,15 +15,18 @@
         android:id="@+id/gardenLogFragment"
         android:name="com.benjamin.gardeningjournalapp.GardenLogFragment"
         android:label="Garden Log"
+        android:textSize="25dp"
+        android:textColor="@color/white"
         tools:layout="@layout/fragment_garden_log" />
 
     <fragment
         android:id="@+id/plantDetailsFragment"
         android:name="com.benjamin.gardeningjournalapp.PlantDetailsFragment"
-        android:label="PlantDetailsFragment">
+        android:label="PlantDetailsFragment" />
 
-        <argument
-            app:argType="integer" />
-    </fragment>
+    <!-- Create an action for navigating from plantDetailsFragment to homeFragment -->
+    <action
+        android:id="@+id/action_plantDetailsFragment_to_homeFragment"
+        app:destination="@id/homeFragment" />
 
 </navigation>

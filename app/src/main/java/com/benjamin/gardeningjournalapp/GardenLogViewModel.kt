@@ -1,4 +1,3 @@
-// GardenLogViewModel.kt
 package com.benjamin.gardeningjournalapp
 
 import androidx.lifecycle.LiveData
@@ -15,6 +14,8 @@ class GardenLogViewModel(private val repository: PlantRepository) : ViewModel() 
             repository.insert(plant)
         }
     }
+
+    fun getPlantById(plantId: Int): LiveData<Plant?> {
+        return repository.getPlantById(plantId)
+    }
 }
-
-

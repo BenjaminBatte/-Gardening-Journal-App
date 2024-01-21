@@ -2,22 +2,16 @@ package com.benjamin.gardeningjournalapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController  // Add this import
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.benjamin.gardeningjournalapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-
+        setContentView(R.layout.activity_main)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -28,5 +22,17 @@ class MainActivity : AppCompatActivity() {
             R.id.gardenLogFragment,
             R.id.plantDetailsFragment
         ).build()
+
+        // Set up the ActionBar with the NavigationUI
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+
+        // Navigate to the Garden Log fragment when the app is launched
+        navController.navigate(R.id.gardenLogFragment)
+    }
+
+    // Override the onSupportNavigateUp method to handle Up navigation
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

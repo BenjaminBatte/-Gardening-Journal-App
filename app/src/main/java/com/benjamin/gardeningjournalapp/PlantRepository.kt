@@ -18,7 +18,7 @@ class PlantRepository(private val plantDao: PlantDao) {
         plantDao.delete(plant)
     }
 
-    fun getPlantById(plantId: Int): LiveData<Plant> {
+    fun getPlantById(plantId: Int): LiveData<Plant?> {
         return plantDao.getPlantById(plantId)
     }
 }

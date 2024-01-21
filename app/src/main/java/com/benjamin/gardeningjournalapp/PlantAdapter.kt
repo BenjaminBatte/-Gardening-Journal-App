@@ -3,18 +3,19 @@ package com.benjamin.gardeningjournalapp
 
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.benjamin.gardeningjournalapp.databinding.ItemPlantBinding
 
 class PlantAdapter : ListAdapter<Plant, PlantAdapter.PlantViewHolder>(PlantDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantViewHolder {
-        val binding =
-            ItemPlantBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PlantViewHolder(binding)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_plant, parent, false)
+        return PlantViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
@@ -22,12 +23,13 @@ class PlantAdapter : ListAdapter<Plant, PlantAdapter.PlantViewHolder>(PlantDiffC
         holder.bind(currentPlant)
     }
 
-    inner class PlantViewHolder(private val binding: ItemPlantBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class PlantViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val textViewName: TextView = itemView.findViewById(R.id.textViewName)
+        private val textViewType: TextView = itemView.findViewById(R.id.textViewType)
 
         fun bind(plant: Plant) {
-            binding.textViewName.text = plant.name
-            binding.textViewType.text = plant.type
+            textViewName.text = plant.name
+            textViewType.text = plant.type
             // Bind other plant details as needed
         }
     }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 
@@ -13,7 +14,7 @@ interface PlantDao {
     @Query("SELECT * FROM plants")
     fun getAllPlants(): LiveData<List<Plant>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(plant: Plant)
 
     @Update
@@ -23,5 +24,5 @@ interface PlantDao {
     suspend fun delete(plant: Plant)
 
     @Query("SELECT * FROM plants WHERE id = :plantId")
-    fun getPlantById(plantId: Int): LiveData<Plant>
+    fun getPlantById(plantId: Int): LiveData<Plant?>
 }
